@@ -12,14 +12,14 @@
     <xs:element name="getOutputResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="output" type="tns:output"/>
+                <xs:element name="getOutput" type="tns:getOutput"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="output">
+    <xs:complexType name="getOutput">
         <xs:sequence>
-            <xs:element name="outputString" type="xs:string"/>
+            <xs:element name="getOutputString" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>   
 </xs:schema>

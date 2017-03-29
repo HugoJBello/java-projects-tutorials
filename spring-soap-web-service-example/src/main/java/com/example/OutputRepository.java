@@ -4,30 +4,30 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
- import io.spring.guides.gs_producing_web_service.Output;
+import io.spring.guides.gs_producing_web_service.GetOutput;
 
 import org.springframework.stereotype.Component;
  
 @Component
 public class OutputRepository {
-	private static final List<Output> outList = new ArrayList<Output>();
+	private static final List<GetOutput> outList = new ArrayList<GetOutput>();
 
 	@PostConstruct
 	public void initData() {
-		Output out1 = new Output();
-		out1.setOutputString("output");
+		GetOutput out1 = new GetOutput();
+		out1.setGetOutputString("output");
 
 		outList.add(out1);
  
 	}
 	
-	public Output findOutput(String input){
-		Output result = new Output();
-		result.setOutputString("-----");
+	public GetOutput findOutput(String input){
+		GetOutput result = new GetOutput();
+		result.setGetOutputString("-----");
 
-		for (Output country : outList) {
-			if (input.contains(country.getOutputString())) {
-				result = country;
+		for (GetOutput getOutput : outList) {
+			if (input.contains(getOutput.getGetOutputString())) {
+				result = getOutput;
 			}
 		}
 		return result;

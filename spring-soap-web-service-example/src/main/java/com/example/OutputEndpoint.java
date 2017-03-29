@@ -8,8 +8,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import io.spring.guides.gs_producing_web_service.GetOutputRequest;
 import io.spring.guides.gs_producing_web_service.GetOutputResponse;
-import io.spring.guides.gs_producing_web_service.Output;
-
+ 
 @Endpoint
 public class OutputEndpoint {
 	private static final String NAMESPACE_URI = "http://spring.io/guides/gs-producing-web-service";
@@ -29,7 +28,7 @@ public class OutputEndpoint {
 //		out.setOutputString("bla bla " + request.getInputString());
 //		response.setOutput(out);
 
-		response.setOutput(countryRepository.findOutput(request.getInputString()));
+		response.setGetOutput(countryRepository.findOutput(request.getInputString()));
 		return response;
 	}
 }

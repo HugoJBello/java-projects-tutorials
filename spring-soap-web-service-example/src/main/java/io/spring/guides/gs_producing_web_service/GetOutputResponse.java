@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2017.03.22 a las 11:03:39 AM CET 
+// Generado el: 2017.03.29 a las 02:48:02 PM CEST 
 //
 
 
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="output" type="{http://spring.io/guides/gs-producing-web-service}output"/>
+ *         &lt;element name="getOutput" type="{http://spring.io/guides/gs-producing-web-service}getOutput"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "output"
+    "getOutput"
 })
 @XmlRootElement(name = "getOutputResponse")
 public class GetOutputResponse {
 
     @XmlElement(required = true)
-    protected Output output;
+    protected GetOutput getOutput;
 
     /**
-     * Obtiene el valor de la propiedad output.
+     * Obtiene el valor de la propiedad getOutput.
      * 
      * @return
      *     possible object is
-     *     {@link Output }
+     *     {@link GetOutput }
      *     
      */
-    public Output getOutput() {
-        return output;
+    public GetOutput getGetOutput() {
+        return getOutput;
     }
 
     /**
-     * Define el valor de la propiedad output.
+     * Define el valor de la propiedad getOutput.
      * 
-     * @param value
+     * @param getoutput
      *     allowed object is
-     *     {@link Output }
+     *     {@link GetOutput }
      *     
      */
-    public void setOutput(Output value) {
-        this.output = value;
+    public void setGetOutput(GetOutput getoutput) {
+        this.getOutput = getoutput;
     }
 
 }
