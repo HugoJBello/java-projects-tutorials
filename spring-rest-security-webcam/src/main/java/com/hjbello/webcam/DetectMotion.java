@@ -17,13 +17,16 @@ import java.util.concurrent.Executors;
  
 import javax.imageio.ImageIO;
 
- 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamMotionDetector;
+import com.hjbello.dao.RecordActivityDAO;
 
  
 public class DetectMotion {
-
+	final static Logger logger = LoggerFactory.getLogger(RecordActivityDAO.class);
 	private static final int INTERVAL = 100; // ms
 
 	private Webcam webcam = Webcam.getDefault();
@@ -83,7 +86,7 @@ public class DetectMotion {
 						// handle it
 					}
 					if (result) {
-						System.out.println("outputFolder crated created");
+						logger.info("outputFolder crated created");
 					}
 				}
 				
@@ -101,7 +104,7 @@ public class DetectMotion {
 						// handle it
 					}
 					if (result) {
-						System.out.println("DIR created");
+						logger.info("DIR created");
 					}
 				}
 
@@ -115,14 +118,14 @@ public class DetectMotion {
 
  
 						DateFormat dateFormat_with_hour = new SimpleDateFormat(
-								"yyyyMMdd-HH_mm_ss");
+								"yyyyMMdd-HH_mm_ss:SSS");
 						Date date = new Date();
 
 						String filename = todaysFolder + "/"
 								+ dateFormat_with_hour.format(date).replace(":", "_") + ".jpg";
 						listOfObtaiedImages.add(filename);
 						listOfObtainedImageBase64.add(convertToBase64(image));
-						System.out.println(filename);
+						logger.info("Photo taken and saved in " + filename);
 
 						try {
 							BufferedOutputStream imageOutputStream = new BufferedOutputStream(
