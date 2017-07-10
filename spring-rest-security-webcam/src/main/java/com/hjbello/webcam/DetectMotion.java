@@ -22,11 +22,11 @@ import org.slf4j.LoggerFactory;
 
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamMotionDetector;
-import com.hjbello.dao.RecordActivityDAO;
+import com.hjbello.dao.RecordActivityDAOImpl;
 
  
 public class DetectMotion {
-	final static Logger logger = LoggerFactory.getLogger(RecordActivityDAO.class);
+	final static Logger logger = LoggerFactory.getLogger(RecordActivityDAOImpl.class);
 	private static final int INTERVAL = 100; // ms
 
 	private Webcam webcam = Webcam.getDefault();

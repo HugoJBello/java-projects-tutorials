@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hjbello.dao.RecordActivityDAO;
+import com.hjbello.dao.RecordActivityDAOImpl;
 import com.hjbello.dao.TAppActivityLog;
 import com.hjbello.webcam.DetectMotion;
  
@@ -24,6 +25,9 @@ import com.hjbello.webcam.DetectMotion;
 @RestController
 public class CaptureImageRestController {
  
+	@Autowired 
+	RecordActivityDAOImpl recordActivityDao;
+	
     @RequestMapping("/")
     public String welcome() {//Welcome page, non-rest
         return "Welcome to RestTemplate Example.";
@@ -66,7 +70,6 @@ public class CaptureImageRestController {
     	tAppActivityLog.setUsername(username);
     	tAppActivityLog.setUserIp(httpRequest.getRemoteAddr());
     	
-    	RecordActivityDAO recordActivityDao = new 	RecordActivityDAO();
       	recordActivityDao.save(tAppActivityLog);
 
         return new ResponseEntity<CapturedMovement>(response, HttpStatus.OK);
