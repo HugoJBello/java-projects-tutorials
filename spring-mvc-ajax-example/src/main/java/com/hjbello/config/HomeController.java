@@ -18,6 +18,5 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("home");
 		return mv;
-	}
-	
+	}	
 }

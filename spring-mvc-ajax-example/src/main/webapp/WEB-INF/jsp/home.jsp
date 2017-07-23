@@ -64,13 +64,11 @@ jQuery(document).ready(function($) {
 });
 
 function callAjax() {
-	
 	/* var token = $('#csrfToken').val();
 	var header = $('#csrfHeader').val(); */	
 	var data = {}
 	data["text1"] = parseInt($("#text1").val());
 	data["text2"] = parseInt($("#text2").val());
-
 
 	$.ajax({
 		type : "POST",

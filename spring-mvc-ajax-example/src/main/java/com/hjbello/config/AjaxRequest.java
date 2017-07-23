@@ -1,7 +1,5 @@
 package com.hjbello.config;
 
-import java.util.Date;
-
 public class AjaxRequest {
 	private String text1;
 	private String text2;
@@ -19,7 +17,7 @@ public class AjaxRequest {
 		this.text2 = text2;
 	}
 
-	public AjaxRequest(String text1, String text2, Date date) {
+	public AjaxRequest(String text1, String text2) {
 		super();
 		this.text1 = text1;
 		this.text2 = text2;
