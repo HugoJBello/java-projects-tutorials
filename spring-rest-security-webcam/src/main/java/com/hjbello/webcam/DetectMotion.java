@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
- 
+import org.apache.commons.codec.binary.Base64OutputStream; 
 import javax.imageio.ImageIO;
 
 import org.slf4j.Logger;
@@ -37,7 +38,7 @@ public class DetectMotion {
 			+ "/captured_photos";
 	private String todaysFolder;
 	private ArrayList<String> listOfObtaiedImages = new ArrayList<String>();
-	private ArrayList<byte[]> listOfObtainedImageBase64 = new ArrayList<byte[]>();
+	private ArrayList<String> listOfObtainedImageBase64 = new ArrayList<String>();
 
 	public DetectMotion(String stopInSeconds) {
 		super();
@@ -51,13 +52,12 @@ public class DetectMotion {
 				+ dateFormat_day.format(date2).toString().replace(":", "_");
 	}
 	
-	public static byte[] convertToBase64(BufferedImage image) throws IOException {
-	    ByteArrayOutputStream baos=new ByteArrayOutputStream(1000);
- 		ImageIO.write(image, "jpg", baos);
-		baos.flush();
- 
-		byte[] base64String=Base64.getEncoder().encode(baos.toByteArray());
-		return base64String;
+	public static String convertToBase64(BufferedImage image) throws IOException {
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		OutputStream b64 = new Base64OutputStream(os);
+		ImageIO.write(image, "png", b64);
+		String result = os.toString("UTF-8");	 
+		return result;
 	}
 	
 	public String record() throws IOException {
@@ -122,7 +122,7 @@ public class DetectMotion {
 						Date date = new Date();
 
 						String filename = todaysFolder + "/"
-								+ dateFormat_with_hour.format(date).replace(":", "_") + ".jpg";
+								+ dateFormat_with_hour.format(date).replace(":", "_") + ".png";
 						listOfObtaiedImages.add(filename);
 						listOfObtainedImageBase64.add(convertToBase64(image));
 						logger.info("Photo taken and saved in " + filename);
@@ -130,7 +130,7 @@ public class DetectMotion {
 						try {
 							BufferedOutputStream imageOutputStream = new BufferedOutputStream(
 									new FileOutputStream(new File(filename)));
-							ImageIO.write(image, "JPG", imageOutputStream);
+							ImageIO.write(image, "PNG", imageOutputStream);
 							imageOutputStream.close();
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -178,11 +178,11 @@ public class DetectMotion {
 		return todaysFolder;
 	}
 
-	public ArrayList<byte[]> getListOfObtainedImageBase64() {
+	public ArrayList<String> getListOfObtainedImageBase64() {
 		return listOfObtainedImageBase64;
 	}
 
-	public void setListOfObtainedImageBase64(ArrayList<byte[]> listOfObtainedImageBase64) {
+	public void setListOfObtainedImageBase64(ArrayList<String> listOfObtainedImageBase64) {
 		this.listOfObtainedImageBase64 = listOfObtainedImageBase64;
 	}
 

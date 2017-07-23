@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hjbello.dao.RecordActivityDAOImpl;
 import com.hjbello.dao.TAppActivityLog;
 import com.hjbello.webcam.DetectMotion;
- 
+
+  
  
 @RestController
 public class CaptureImageRestController {
@@ -52,7 +53,7 @@ public class CaptureImageRestController {
 			e.printStackTrace();
 		}
      	ArrayList<String> imagesPath = detector.getListOfObtaiedImages();
-     	ArrayList<byte[]> imagesBase64 = detector.getListOfObtainedImageBase64(); 
+     	ArrayList<String> imagesBase64 = detector.getListOfObtainedImageBase64(); 
     	
      	//Here we prepare the response
     	CapturedMovement response = new CapturedMovement();
@@ -73,5 +74,12 @@ public class CaptureImageRestController {
       	recordActivityDao.save(tAppActivityLog);
 
         return new ResponseEntity<CapturedMovement>(response, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/camInfo/", method = RequestMethod.GET)
+    public ResponseEntity<SystemInfo> capturePost()  {
+    	SystemInfo sysInfo = new SystemInfo();
+    	sysInfo.obtainInfo();
+        return new ResponseEntity<SystemInfo>(sysInfo, HttpStatus.OK);
     }
 }

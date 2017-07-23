@@ -3,13 +3,14 @@ package com.hjbello;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 public class CapturedMovement {
 
 	private String dateOfCapture;
 
 	private ArrayList<String> imagesPath;
 
-	private ArrayList<byte[]> imagesBase64;
+	private ArrayList<String> imagesBase64;
 
 	public String getDateOfCapture() {
 		return dateOfCapture;
@@ -19,15 +20,15 @@ public class CapturedMovement {
 		this.dateOfCapture = dateOfCapture;
 	}
 
-	public ArrayList<byte[]> getImagesBase64() {
+	public ArrayList<String> getImagesBase64() {
 		return imagesBase64;
 	}
 
-	public void setImagesBase64(ArrayList<byte[]> imagesBase64) {
+	public void setImagesBase64(ArrayList<String> imagesBase64) {
 		this.imagesBase64 = imagesBase64;
 	}
 
-	public CapturedMovement(String dateOfCapture, ArrayList<byte[]> imagesBase64) {
+	public CapturedMovement(String dateOfCapture, ArrayList<String> imagesBase64) {
 		super();
 		this.dateOfCapture = dateOfCapture;
 		this.imagesBase64 = imagesBase64;

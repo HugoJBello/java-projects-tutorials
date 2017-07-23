@@ -1,8 +1,9 @@
 package com.hjbello;
 
+
 public class RequestCapture {
 
-	int seconds;
+	private int seconds;
 
 	public RequestCapture(int seconds) {
 		super();
