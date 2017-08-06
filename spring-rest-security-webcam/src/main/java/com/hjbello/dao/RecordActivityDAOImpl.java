@@ -15,7 +15,7 @@ public class RecordActivityDAOImpl implements RecordActivityDAO {
 	//for more info: http://www.sqlitetutorial.net/sqlite-java/sqlite-jdbc-driver/
 	public Connection connect() {
 		// SQLite connection string
-		String dbFile = System.getProperty("user.home") + "/sqlite_databases/activity_log.db";
+		String dbFile = System.getProperty("user.home") + "/sqlite_databases/webcam_controller_database.db";
 		String url = "jdbc:sqlite:"+dbFile;
 		Connection conn = null;
 		try {
@@ -36,7 +36,7 @@ public class RecordActivityDAOImpl implements RecordActivityDAO {
 
 			pstmt.setString(1,tAppActivityLog.getUsername());
 			pstmt.setString(2,tAppActivityLog.getUserIp());
-			pstmt.setString(3,  tAppActivityLog.getDateAccessed().toString());
+			pstmt.setTimestamp(3,new java.sql.Timestamp(tAppActivityLog.getDateAccessed().getTime()));
 			pstmt.setString(4,tAppActivityLog.getPhotosSent());
 
 			pstmt.executeUpdate();

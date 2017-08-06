@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hjbello.dao.RecordActivityDAOImpl;
+import com.hjbello.dao.SetUpDatabase;
 import com.hjbello.dao.TAppActivityLog;
 import com.hjbello.webcam.DetectMotion;
 
@@ -29,9 +31,12 @@ public class CaptureImageRestController {
 	@Autowired 
 	RecordActivityDAOImpl recordActivityDao;
 	
-    @RequestMapping("/")
-    public String welcome() {//Welcome page, non-rest
-        return "Welcome to RestTemplate Example.";
+	@Autowired 
+	SetUpDatabase setUpDatabase;
+	
+    @PostConstruct
+    public void init() { 
+    	setUpDatabase.createTables();
     }
  
     @RequestMapping("/captureStopIn/{seconds}")
@@ -59,7 +64,7 @@ public class CaptureImageRestController {
     	CapturedMovement response = new CapturedMovement();
     	response.setImagesPath(imagesPath);
     	response.setImagesBase64(imagesBase64);
-    	response.setDateOfCapture(date.toString());
+    	response.setDateOfCapture(date);
     	
     	// we record this request in the database
     	TAppActivityLog tAppActivityLog = new TAppActivityLog();
