@@ -1,0 +1,52 @@
+.container {
+	margin: 50px auto;
+	width: 640px;
+}
+
+input[type="text"] {
+    border: 1px solid;
+    height: 20px;
+    width: 160px;
+}
+input[type="password"] {
+    border: 0px solid;
+    height: 20px;
+    width: 160px;
+}
+
+.login {
+	position: relative;
+	margin: 50px auto;
+	padding: 20px 20px 20px;
+	width: 310px;
+	border-radius: 25px;
+	border: 2px solid #73AD21;
+	
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
