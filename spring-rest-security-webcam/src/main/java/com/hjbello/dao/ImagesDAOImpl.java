@@ -9,13 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.sqlite.SQLiteDataSource;
  
-@Repository("recordActivityDAO")
-public class RecordActivityDAOImpl implements RecordActivityDAO {
-	final static Logger logger = LoggerFactory.getLogger(RecordActivityDAOImpl.class);
-	
+@Repository("imagesDAO")
+public class ImagesDAOImpl implements ImagesDAO {
+	final static Logger logger = LoggerFactory.getLogger(ImagesDAOImpl.class);
+
 	@Autowired
 	SQLiteDataSource dataSource;
 	
@@ -32,22 +31,22 @@ public class RecordActivityDAOImpl implements RecordActivityDAO {
 		return conn;
 	}
 
-	public  void save(TAppActivityLog tAppActivityLog) {
-		String sql = "INSERT INTO app_activity_log (username, user_ip, date_accessed,photos_sent) "
+	public  void save(TImages tImages) {
+		String sql = "INSERT INTO images (filename, date_recorded, username, user_ip) "
 				+ "values (?,?,?,?)";
-
+		
 		try (Connection conn = this.connect();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-			pstmt.setString(1,tAppActivityLog.getUsername());
-			pstmt.setString(2,tAppActivityLog.getUserIp());
-			pstmt.setTimestamp(3,new java.sql.Timestamp(tAppActivityLog.getDateAccessed().getTime()));
-			pstmt.setString(4,tAppActivityLog.getPhotosSent());
+			pstmt.setString(1,tImages.getFilename());
+			pstmt.setTimestamp(2,new java.sql.Timestamp(tImages.getDateRecorded().getTime()));
+			pstmt.setString(3,tImages.getUsername());
+			pstmt.setString(4,tImages.getUserIp());
 
 			pstmt.executeUpdate();
-			logger.info("Activity recorded");
+			logger.info("Image recorded in database");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			logger.info(e.getMessage());
 		}
 	}
 
