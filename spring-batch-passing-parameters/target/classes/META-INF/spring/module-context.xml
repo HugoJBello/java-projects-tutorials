@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<description> 
+	</description>
+
+	<batch:job id="job1">
+		<batch:step id="step1" next="step2">
+			<batch:tasklet ref="taskletStep1" transaction-manager="transactionManager"
+				start-limit="100">
+			</batch:tasklet>
+		</batch:step>
+		<batch:step id="step2" next="step3">
+			<batch:tasklet transaction-manager="transactionManager"
+				start-limit="100">
+				<batch:chunk reader="readerStep2" writer="writerStep2"
+					commit-interval="1" />
+			</batch:tasklet>
+		</batch:step>
+		<batch:step id="step3">
+			<batch:tasklet transaction-manager="transactionManager"
+				start-limit="100">
+				<batch:chunk reader="readerStep3" writer="writerStep3"
+					commit-interval="1" />
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+</beans>
