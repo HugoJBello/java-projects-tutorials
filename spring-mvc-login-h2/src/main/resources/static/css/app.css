@@ -1,0 +1,47 @@
+.container {
+	margin: 250px auto;
+	width: 640px;
+}
+
+input[type="text"] {
+    border: 1px solid;
+    height: 20px;
+    width: 160px;
+}
+input[type="password"] {
+    border: 0px solid;
+    height: 20px;
+    width: 160px;
+}
+
+.login {
+	position: relative;
+	margin: 50px auto;
+	padding: 20px 20px 20px;
+	width: 300px;
+	border-radius: 25px;
+	border: 2px solid #73AD21;
+	
+}
+.text_centered{
+	position: relative;
+	margin: 50px auto;
+	padding: 20px 20px 20px;
+	width: 310px;
+}
+
+.login-table{
+   display:table;
+   table-layout:fixed;
+   height:100%;
+   width:60%;
+}
+ .row{
+   display : table-row;
+}
+.cell{
+   display : table-cell;
+}
+
+
+ 
