@@ -86,7 +86,6 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -95,6 +94,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>

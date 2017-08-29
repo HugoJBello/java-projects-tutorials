@@ -35,13 +35,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 auth.userDetailsService(userDetailsService);
  } 
  
-
- 
  @Override
  protected void configure(HttpSecurity http) throws Exception {
    http.authorizeRequests()
-  .antMatchers("/hello").access("hasRole('ROLE_ADMIN')")
-  .antMatchers("/hello/home2").access("hasRole('ROLE_ADMIN')")
+  .antMatchers("/application").access("hasRole('ROLE_ADMIN')")
   .anyRequest().permitAll()
   .and()
     .formLogin().loginPage("/login")
@@ -55,7 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
    http.headers().frameOptions().disable();
    http.authorizeRequests().antMatchers("/").permitAll().and()
 	.authorizeRequests().antMatchers("/console/**").permitAll();
-	http.csrf().disable();
+	
+   http.csrf().disable();
 	
  }
  

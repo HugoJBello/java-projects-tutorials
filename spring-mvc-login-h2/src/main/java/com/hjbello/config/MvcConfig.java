@@ -38,7 +38,4 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
         registrationBean.addUrlMappings("/console/*");
         return registrationBean;
     }
-
-
-
 }
